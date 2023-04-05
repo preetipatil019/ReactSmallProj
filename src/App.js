@@ -1,18 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
 import Button from './MyButton';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import Square from './Square';
+import ParentComponent from './ParentComponent';
 
+//User Details
 const user = {
   name: "Hedy Lamarr",
   image: "https://i.imgur.com/yXOvdOSs.jpg",
   imageSize:90,
 }
 
+//custom hook
+const useCounter = (initialValue) => {
+  const[newcount, setnewCount] = useState(initialValue);
+  const increment = () => setnewCount(newcount + 1);
+  const decrement = () => setnewCount(newcount - 1);
+  const reset =()=> setnewCount(initialValue);
+  return {newcount,increment,decrement,reset}
+}
 
 function MyApp() {
-   const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
+  const { newcount, increment, decrement, reset } = useCounter(0);
+
+    const[id,setId] = useState(1)
+  const [salary, setSalary] = useState(3000)
+  const [age, setAge] = useState(30)
+
+  
+  useEffect(() => {
+    console.log("initial")
+    setInterval(() => {
+      setId(id +1)
+    }, 3000);
+   
+  });
    function handleClick() {
      setCount(count + 1);
    }
@@ -46,8 +70,24 @@ function MyApp() {
         <Button count={count} onClick={handleClick} />
         <Button count={count} onClick={handleClick} />
         <br />
-        <br />
+
+       
         <Square />
+        <br /><br />
+       <h1> custom hooks</h1>
+        <br />
+         <h1>
+          {newcount}
+        </h1>
+        <br />
+        <button onClick={increment}>increment</button>
+        <button onClick={decrement}>decrement</button>
+        <button onClick={reset}>res</button>
+
+         <br /><br />
+       <h1> pure component</h1>
+        <br />
+<ParentComponent id={id} salary={salary} age={age} />
       </div>
     </>
   );
