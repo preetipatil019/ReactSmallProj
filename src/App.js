@@ -4,6 +4,8 @@ import Button from './MyButton';
 import { useState ,useEffect} from 'react';
 import Square from './Square';
 import ParentComponent from './ParentComponent';
+import Container from './Container';
+import Hello from './Hello';
 
 //User Details
 const user = {
@@ -54,7 +56,7 @@ function MyApp() {
     >{item.title}</li>
   )
 
- 
+ const SampleComponent = Container(Hello)
   return (
     <>
       <h1>{user.name}</h1>
@@ -87,7 +89,11 @@ function MyApp() {
          <br /><br />
        <h1> pure component</h1>
         <br />
-<ParentComponent id={id} salary={salary} age={age} />
+        <ParentComponent id={id} salary={salary} age={age} />
+          <br /><br />
+       <h1> HO component</h1>
+        <br />
+<SampleComponent />
       </div>
     </>
   );
