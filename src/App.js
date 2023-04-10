@@ -31,6 +31,13 @@ function MyApp() {
   const [salary, setSalary] = useState(3000)
   const [age, setAge] = useState(30)
 
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggleClick = () => {
+    setToggle(!toggle)
+  }
+
+  const bgColor = toggle ? "bg-red" :"bg-blue"
   
   useEffect(() => {
     console.log("initial")
@@ -95,6 +102,13 @@ function MyApp() {
         <br />
 <SampleComponent />
       </div>
+
+      <br />
+      <br />
+      <h1>Styling a react Application</h1>
+      <br />
+      pre defined style
+      <button onClick={handleToggleClick} className={bgColor}>Click Me !</button>
     </>
   );
 }
